@@ -1,0 +1,33 @@
+<div class="post-item-meta">
+    {{ i18n "format_date" .PublishDate }}
+    &emsp;
+    <!-- Valine Vistors Start -->
+    {{ if .Site.Params.valine.visitor }}
+    <!-- <i class="far fa-eye"></i> -->
+        <span id="{{ .Permalink | relURL }}" class="leancloud_visitors" data-flag-title="{{ .Title }}">
+            <span class="leancloud-visitors-count"> {{ T "valinePV" }} </span>
+        </span>
+        &emsp;
+    {{ end }}
+    <!-- Valine Vistors End -->
+
+    <!-- Reading Time Start -->
+    {{ if .Site.Params.enableReadingTime }}
+        <i class="far fa-clock"></i>
+        {{ $readTime := mul (div (countwords .Content) 220.0) 60 }}
+
+        {{ $minutes := math.Floor (div $readTime 60) }}
+        {{ $seconds := mod $readTime 60 }}
+
+        {{ if gt $minutes 0}}
+        {{ $minutes }} {{ cond (eq $minutes 1) "minute" "min" }}
+        {{ end }}
+        {{ $seconds }} {{ cond (eq $seconds 1) "second" "s" }}
+        &emsp;
+    {{ end }}
+    <!-- Reading Time End -->
+    
+    {{ if .Draft }}
+        <span class="draft-label">{{ i18n "draft" }}</span>
+    {{ end }}
+</div>

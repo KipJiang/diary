@@ -1,0 +1,89 @@
+<head>
+<title>{{ .Title }}</title>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="{{ .Site.Params.googleSiteVerification }}">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+{{ if .IsHome }}<meta name="description" content="{{ .Site.Params.description }}">{{ end }}
+{{ if .Params.description }}<meta name="description" content="{{ .Params.description }}">{{ end }}
+{{ if .Params.tags }}<meta name="keywords" content="{{ delimit .Params.tags ", " }}">{{ end }}
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+<script src="{{"/vendor/js/jquery.min.js" | relURL}}" ></script>
+<script src="{{"/vendor/js/popper.min.js" | relURL}}" ></script>
+<script src="{{"/vendor/js/bootstrap.min.js" | relURL}}" ></script>
+<script src="{{"/vendor/js/smooth-scroll.polyfills.min.js" | relURL}}" ></script>
+<link type="text/css" rel="stylesheet" href="{{"/vendor/css/bootstrap.min.css" | relURL}}">
+<script src="{{"/vendor/js/vue.min.js" | relURL}}" ></script>
+
+<!-- *** SCSS style start *** -->
+{{ $styles := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
+
+{{ if not .Site.Params.disableDarkmode }}
+{{ $darkmode := resources.Get "scss/dark-mode.scss" | toCSS | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $darkmode.Permalink }}" integrity="{{ $darkmode.Data.Integrity }}" media="screen">
+{{ end }}
+
+<script src="{{ .Site.BaseURL }}/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+<!-- Font Awesome -->
+<!-- <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+
+<!-- *** SCSS style end *** -->
+
+<!-- *** comments start *** -->
+<!-- if and (.Site.Params.valine.enableValine) (.IsPage) -->
+{{ if .Site.Params.valine.enableValine }}
+<!-- <script src="//cdn1.lncld.net/static/js/av-min.js"></script> -->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+{{ end }}
+
+{{ if .Site.Params.disqusShortname }}
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+{{ end }}
+
+<!-- *** comments end *** -->
+
+<!-- *** Parameters Custom start *** -->
+{{if .Site.Params.enableOpenGraph}}
+{{ template "_internal/opengraph.html" . }}
+{{end}}
+
+{{if .Site.Params.enableTwitterCards}}
+{{ template "_internal/twitter_cards.html" . }}
+{{end}}
+
+{{ if .Site.GoogleAnalytics }}
+{{ template "_internal/google_analytics.html" . }}
+{{ end }}
+
+{{ if .Site.Params.enableMathJax }}
+  {{ partial "mathjax.html" . }}
+{{ end }}
+
+{{ if and (not (.Params.disableToC) ) (.IsPage) }}
+  {{ if .Params.disableAutoCollapse }}
+    <script src="{{.Site.BaseURL}}/js/toc.js"></script>
+  {{ else }}
+    <script src="{{.Site.BaseURL}}/js/toc-collapse.js"></script>
+  {{ end }}
+{{ end }}
+
+{{ if .Site.Params.favicon }}
+<link rel="icon" href="{{ .Site.Params.favicon }}">
+{{ end }}
+
+<!-- The web app manifest is a JSON file -->
+{{if .Site.Params.manifest}}
+<link rel="manifest" href="{{ .Site.Params.manifest }}">
+{{end}}
+
+<!-- *** Parameters Custom end *** -->
+</head>

@@ -1,0 +1,23 @@
+<div class="theme-info" id="theme-info" style="display: none;">
+	Modified <a href="https://github.com/KipJiang/hugo-theme-diary">Diary</a> by <a href="https://kipjiang.github.io/">Kip Jiang,</a>
+	<br>
+	<!-- Please don't remove the information of theme makers. -->
+	{{ i18n "hugo_theme" }} <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> {{ i18n "by" }} <a href="https://amazingrise.net">Rise</a>
+	<br>
+	{{ i18n "ported_from" }} <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a>
+	<br><br>
+	<!-- Because this project is under MIT licence. -->
+</div>
+<div class="copyright" id="copyright">
+	{{ with .Site.Copyright }}
+		&copy; {{ . | markdownify }}
+		<!-- &#183;
+		<a href="{{ "/index.xml" | absLangURL }}" target="_blank" title="rss">
+			<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 25 24" fill="none" 
+			stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss">
+			<path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+			</svg>
+		</a> -->
+	{{ end }}
+	&#183; <a href="#" onclick="document.getElementById('theme-info').style=''">Diary</a>
+</div>

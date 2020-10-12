@@ -8,11 +8,16 @@ features = ["mobile","elegant"]
 min_version = "0.59.0"
 
 [author]
+  name = "Kip Jinag"
+  homepage = "https://kipjiang.github.io"
+  repo = "https://github.com/KipJiang/diary"
+
+[original.v2]
   name = "amazingrise"
   homepage = "https://amazingrise.net/"
 
 # If porting an existing theme
-[original]
+[original.v1]
   name = "SumiMakito"
   homepage = "https://mak1t0.cc"
   repo = "https://github.com/SumiMakito/hexo-theme-Journal/"

@@ -1,9 +1,5 @@
 # TODO List
 
-```shell
-$ git checkout kipjiang
-```
-
 - [x] Markdownify the copyright string.
 
 - [x] Display the theme info implicitly.
